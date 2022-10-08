@@ -1,6 +1,6 @@
 package makeme.billionaire.model
 
-data class CandleResponseDTO(
+data class CandleResponse(
     val openTime: Long,
     val openPrice: String,
     val highPrice: String,
