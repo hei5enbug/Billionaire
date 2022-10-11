@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController
 class CandleController(private val candleService: CandleService) {
 
     @GetMapping("/symbol/{symbol}")
-    fun getPrice(
+    fun getCandleInfo(
         @PathVariable("symbol") symbol: String
     ): List<CandleResponse> {
-        return candleService.requestJsonGet(symbol)
+        return candleService.getCandleInfo(symbol)
     }
 
 }
