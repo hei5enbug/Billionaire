@@ -2,18 +2,21 @@ package makeme.billionaire.model
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
-import org.springframework.stereotype.Component
 
-@Component
+@ConstructorBinding
+@ConfigurationProperties(prefix = "binance")
 data class EnvironmentProperties(
-    val binance: BinanceProperties
+    val api: ApiProperties,
+    val url: UrlProperties,
 ) {
-    @ConstructorBinding
-    @ConfigurationProperties(prefix = "binance")
-    data class BinanceProperties(
-        val url: String = "",
-        val key: String = "",
-        val secret: String = "",
+    data class UrlProperties(
+        val candleInfo: String,
+        val symbolList: String,
+    )
+
+    data class ApiProperties(
+        val key: String,
+        val secret: String,
     )
 }
 
