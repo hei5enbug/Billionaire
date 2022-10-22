@@ -2,10 +2,20 @@ package makeme.billionaire.model
 
 data class CandleResponse(
     val openTime: Long,
-    val openPrice: String,
-    val highPrice: String,
-    val lowPrice: String,
-    val closePrice: String,
-    val volume: String,
+    val openPrice: Double,
+    val highPrice: Double,
+    val lowPrice: Double,
+    val closePrice: Double,
+    val volume: Double,
     val closeTime: Long,
-)
+) {
+    constructor(response: List<String>) : this(
+        response[0].toLong(),
+        response[1].toDouble(),
+        response[2].toDouble(),
+        response[3].toDouble(),
+        response[4].toDouble(),
+        response[5].toDouble(),
+        response[6].toLong(),
+    )
+}

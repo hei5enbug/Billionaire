@@ -21,7 +21,15 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("com.squareup.okhttp3:okhttp")
+	implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+dependencyManagement {
+	imports {
+		mavenBom("org.springframework.cloud:spring-cloud-dependencies:2021.0.4")
+	}
 }
 
 tasks.withType<KotlinCompile> {
