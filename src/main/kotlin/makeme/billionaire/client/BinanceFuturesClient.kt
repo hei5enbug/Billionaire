@@ -1,6 +1,6 @@
 package makeme.billionaire.client
 
-import makeme.billionaire.config.HeaderConfiguration
+import makeme.billionaire.config.FeignConfig
 import makeme.billionaire.model.dto.AccountResponse
 import makeme.billionaire.model.dto.LeverageResponse
 import makeme.billionaire.model.dto.MarketPriceResponse
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam
 @FeignClient(
     name = "binanceFuturesClient",
     url = "https://fapi.binance.com",
-    configuration = [HeaderConfiguration::class]
+    configuration = [FeignConfig::class]
 )
 interface BinanceFuturesClient {
 
