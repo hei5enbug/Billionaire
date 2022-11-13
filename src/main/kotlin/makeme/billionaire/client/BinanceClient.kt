@@ -13,6 +13,8 @@ interface BinanceClient {
     fun getCandleInfo(
         @RequestParam("symbol") symbol: String,
         @RequestParam("interval") interval: String,
+        @RequestParam("startTime") startTime: Long? = null,
+        @RequestParam("endTime") endTime: Long? = null,
         @RequestParam("limit") limit: Int,
     ): List<List<String>>
 

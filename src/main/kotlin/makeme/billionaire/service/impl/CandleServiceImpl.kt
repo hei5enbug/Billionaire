@@ -10,9 +10,16 @@ class CandleServiceImpl(
     private val binanceClient: BinanceClient
 ) : CandleService {
 
-    override fun getCandleInfo(symbol: String, interval: String, limit: Int): List<CandleResponse> {
-        return binanceClient.getCandleInfo(symbol, interval, limit)
-            .map { CandleResponse(it) }
+    override fun getCandleInfo(
+        symbol: String, interval: String, startTime: Long?, endTime: Long?, limit: Int
+    ): List<CandleResponse> {
+        return binanceClient.getCandleInfo(
+            symbol = symbol,
+            interval = interval,
+            startTime = startTime,
+            endTime = endTime,
+            limit = limit
+        ).map { CandleResponse(it) }
     }
 
     override fun getSymbolList(): List<String> {

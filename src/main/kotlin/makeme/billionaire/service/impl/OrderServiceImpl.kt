@@ -18,8 +18,8 @@ class OrderServiceImpl(
 ) : OrderService {
 
     companion object {
-        const val HMAC_SHA256 = "HmacSHA256"
-        const val digits = "0123456789abcdef"
+        private const val HMAC_SHA256 = "HmacSHA256"
+        private const val digits = "0123456789abcdef"
     }
 
     @Value("\${binance.key.secret}")
