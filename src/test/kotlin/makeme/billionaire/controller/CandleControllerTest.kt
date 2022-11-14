@@ -5,8 +5,8 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import makeme.billionaire.client.BinanceClient
-import makeme.billionaire.model.CandleResponse
-import makeme.billionaire.model.SymbolsResponse
+import makeme.billionaire.model.dto.CandleResponse
+import makeme.billionaire.model.dto.SymbolsResponse
 import makeme.billionaire.service.impl.CandleServiceImpl
 import java.time.LocalDateTime
 import java.time.ZoneId

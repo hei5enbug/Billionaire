@@ -1,12 +1,13 @@
 package makeme.billionaire.service.impl
 
 import makeme.billionaire.client.BinanceFuturesClient
+import makeme.billionaire.model.BinanceProperties
+import makeme.billionaire.model.OrderPosition
 import makeme.billionaire.model.dto.AccountResponse
 import makeme.billionaire.model.dto.LeverageResponse
 import makeme.billionaire.model.dto.MarketPriceResponse
 import makeme.billionaire.model.dto.OrderResponse
 import makeme.billionaire.service.OrderService
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
@@ -14,7 +15,8 @@ import kotlin.math.floor
 
 @Service
 class OrderServiceImpl(
-    val binanceFuturesClient: BinanceFuturesClient
+    val binanceFuturesClient: BinanceFuturesClient,
+    val binanceProperties: BinanceProperties,
 ) : OrderService {
 
     companion object {
@@ -22,15 +24,13 @@ class OrderServiceImpl(
         private const val digits = "0123456789abcdef"
     }
 
-    @Value("\${binance.key.secret}")
-    private lateinit var secretKey:String
-
-    override fun requestOrder(symbol: String, leverage: Int, side: String, ratio: Double): OrderResponse {
+    override fun requestOrder(symbol: String, leverage: Int, position: OrderPosition, ratio: Double): OrderResponse {
         changeLeverage(symbol, leverage)
         val total = getAccountInfo().maxWithdrawAmount
         val marketPrice = getMarketPrice(symbol).markPrice
         var quantity = total * (ratio - 0.004) * leverage
         quantity = floor(quantity / marketPrice * 1000) / 1000
+        val side = position.toSide()
 
         val timestamp = System.currentTimeMillis()
         val signature = getSignature(
@@ -69,7 +69,7 @@ class OrderServiceImpl(
         return response
     }
 
-    override fun changeLeverage(symbol: String, leverage: Int): LeverageResponse {
+    fun changeLeverage(symbol: String, leverage: Int): LeverageResponse {
         val timestamp = System.currentTimeMillis()
         val signature = getSignature("symbol=${symbol}&leverage=${leverage}&timestamp=${timestamp}")
         return binanceFuturesClient.requestChangeLeverage(
@@ -93,8 +93,8 @@ class OrderServiceImpl(
         return binanceFuturesClient.requestMarketPrice(symbol = symbol)
     }
 
-    private fun getSignature(data: String): String {
-        val secretKeySpec = SecretKeySpec(secretKey.toByteArray(Charsets.UTF_8), HMAC_SHA256)
+    fun getSignature(data: String): String {
+        val secretKeySpec = SecretKeySpec(binanceProperties.secret.toByteArray(Charsets.UTF_8), HMAC_SHA256)
         val mac = Mac.getInstance(HMAC_SHA256)
         mac.init(secretKeySpec)
         val hash = mac.doFinal(data.toByteArray())

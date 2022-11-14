@@ -1,6 +1,6 @@
 package makeme.billionaire.controller
 
-import makeme.billionaire.model.CandleResponse
+import makeme.billionaire.model.dto.CandleResponse
 import makeme.billionaire.service.CandleService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable

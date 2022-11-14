@@ -1,6 +1,6 @@
 package makeme.billionaire.service
 
-import makeme.billionaire.model.CandleResponse
+import makeme.billionaire.model.dto.CandleResponse
 
 
 interface CandleService {

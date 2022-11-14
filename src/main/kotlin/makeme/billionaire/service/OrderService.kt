@@ -1,16 +1,14 @@
 package makeme.billionaire.service
 
+import makeme.billionaire.model.OrderPosition
 import makeme.billionaire.model.dto.AccountResponse
-import makeme.billionaire.model.dto.LeverageResponse
 import makeme.billionaire.model.dto.MarketPriceResponse
 import makeme.billionaire.model.dto.OrderResponse
 
 
 interface OrderService {
 
-    fun requestOrder(symbol: String, leverage: Int, side: String, ratio: Double): OrderResponse
-
-    fun changeLeverage(symbol: String, leverage: Int = 1): LeverageResponse
+    fun requestOrder(symbol: String, leverage: Int, position: OrderPosition, ratio: Double): OrderResponse
 
     fun getAccountInfo(): AccountResponse
 

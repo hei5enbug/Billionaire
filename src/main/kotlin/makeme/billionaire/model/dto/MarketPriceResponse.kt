@@ -7,6 +7,6 @@ data class MarketPriceResponse(
     val estimatedSettlePrice: Double,
     val lastFundingRate: Double,
     val interestRate: Double,
-    val nextFundingTime: Double,
-    val time: Double,
+    val nextFundingTime: Long,
+    val time: Long,
 )

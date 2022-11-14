@@ -1,7 +1,7 @@
 package makeme.billionaire.service.impl
 
 import makeme.billionaire.client.BinanceClient
-import makeme.billionaire.model.CandleResponse
+import makeme.billionaire.model.dto.CandleResponse
 import makeme.billionaire.service.CandleService
 import org.springframework.stereotype.Service
 

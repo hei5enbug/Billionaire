@@ -3,7 +3,7 @@ package makeme.billionaire.exception
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import feign.Response
 import feign.codec.ErrorDecoder
-import makeme.billionaire.model.BinanceResponseException
+import makeme.billionaire.model.dto.BinanceResponseException
 
 
 class FeignErrorDecoder : ErrorDecoder {

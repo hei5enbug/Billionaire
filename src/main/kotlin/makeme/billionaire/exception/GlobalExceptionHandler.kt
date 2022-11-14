@@ -1,7 +1,7 @@
 package makeme.billionaire.exception
 
-import makeme.billionaire.model.BinanceResponseException
-import makeme.billionaire.model.ErrorResponse
+import makeme.billionaire.model.dto.BinanceResponseException
+import makeme.billionaire.model.dto.ErrorResponse
 import makeme.billionaire.util.Log
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
