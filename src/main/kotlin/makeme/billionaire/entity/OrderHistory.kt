@@ -5,7 +5,7 @@ import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
-class Order(
+class OrderHistory(
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
@@ -14,15 +14,16 @@ class Order(
     val symbol: String,
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 10)
     val position: OrderPosition,
 
     @Column(nullable = false)
     val quantity: Double,
 
-    @Column(nullable = false)
-    val profit: Double,
+    @Column(nullable = true)
+    var profit: Double,
 
     @Column(nullable = false)
     val date: LocalDateTime,
 
-    )
+)
