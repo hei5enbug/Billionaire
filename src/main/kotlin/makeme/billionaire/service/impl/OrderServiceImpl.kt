@@ -30,7 +30,7 @@ class OrderServiceImpl(
         val marketPrice = getMarketPrice(symbol).markPrice
         var quantity = total * (ratio - 0.004) * leverage
         quantity = floor(quantity / marketPrice * 1000) / 1000
-        val side = position.toSide()
+        val side = position.side
 
         val timestamp = System.currentTimeMillis()
         val signature = getSignature(

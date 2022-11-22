@@ -14,7 +14,7 @@ class CandleServiceImpl(
         symbol: String, interval: String, startTime: Long?, endTime: Long?, limit: Int
     ): List<CandleResponse> {
         return binanceClient.getCandleInfo(
-            symbol = symbol,
+            symbol = symbol.uppercase(),
             interval = interval,
             startTime = startTime,
             endTime = endTime,
