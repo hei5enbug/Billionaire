@@ -54,7 +54,7 @@ class OrderServiceTest : DescribeSpec({
             every {
                 binanceFuturesClient.requestOrder(
                     symbol = symbol,
-                    side = position.toSide(),
+                    side = position.side,
                     type = any(),
                     quantity = any(),
                     stopPrice = any(),
