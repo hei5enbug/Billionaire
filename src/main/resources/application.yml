@@ -1,0 +1,22 @@
+server.port: 8080
+
+spring:
+  application:
+    name: billionaire
+
+  config:
+    import: "aws-parameterstore:"
+
+  jpa:
+    show_sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+      hibernate.format_sql: true
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: FULL

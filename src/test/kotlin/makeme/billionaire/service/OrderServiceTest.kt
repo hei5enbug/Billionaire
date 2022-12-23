@@ -5,8 +5,8 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import makeme.billionaire.client.BinanceFuturesClient
-import makeme.billionaire.model.BinanceProperties
 import makeme.billionaire.model.OrderPosition
+import makeme.billionaire.model.BinanceProperties
 import makeme.billionaire.model.dto.AccountResponse
 import makeme.billionaire.model.dto.LeverageResponse
 import makeme.billionaire.model.dto.MarketPriceResponse
@@ -19,8 +19,6 @@ class OrderServiceTest : DescribeSpec({
 
     describe("binanceFuturesClient ready") {
         val binanceFuturesClient = mockk<BinanceFuturesClient>()
-        val binanceProperties = mockk<BinanceProperties>()
-        every { binanceProperties.secret } returns RandomString(512).toString()
         val orderService = OrderServiceImpl(binanceFuturesClient, binanceProperties)
 
         context("binance futures API /fapi/v2/account") {
@@ -86,6 +84,10 @@ class OrderServiceTest : DescribeSpec({
             interestRate = 0.00010000,
             nextFundingTime = 1668384000000,
             time = 1668383046008
+        )
+        val binanceProperties = BinanceProperties(
+            RandomString(30).nextString(),
+            RandomString(30).nextString()
         )
     }
 }

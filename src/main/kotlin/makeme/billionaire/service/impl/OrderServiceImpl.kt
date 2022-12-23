@@ -1,8 +1,8 @@
 package makeme.billionaire.service.impl
 
 import makeme.billionaire.client.BinanceFuturesClient
-import makeme.billionaire.model.BinanceProperties
 import makeme.billionaire.model.OrderPosition
+import makeme.billionaire.model.BinanceProperties
 import makeme.billionaire.model.dto.AccountResponse
 import makeme.billionaire.model.dto.LeverageResponse
 import makeme.billionaire.model.dto.MarketPriceResponse
@@ -94,7 +94,7 @@ class OrderServiceImpl(
     }
 
     fun getSignature(data: String): String {
-        val secretKeySpec = SecretKeySpec(binanceProperties.secret.toByteArray(Charsets.UTF_8), HMAC_SHA256)
+        val secretKeySpec = SecretKeySpec(binanceProperties.secretKey.toByteArray(Charsets.UTF_8), HMAC_SHA256)
         val mac = Mac.getInstance(HMAC_SHA256)
         mac.init(secretKeySpec)
         val hash = mac.doFinal(data.toByteArray())

@@ -1,11 +1,14 @@
 package makeme.billionaire.model
 
-import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.boot.context.properties.ConstructorBinding
 
-@ConstructorBinding
-@ConfigurationProperties(prefix = "binance.key")
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.stereotype.Component
+
+@Component
 data class BinanceProperties(
-    val api: String,
-    val secret: String,
+    @Value("\${binance.api}")
+    val apiKey: String,
+
+    @Value("\${binance.secret}")
+    val secretKey: String
 )

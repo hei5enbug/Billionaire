@@ -1,8 +1,0 @@
-server:
-  port: 8080
-
-binance:
-  url: https://api1.binance.com/api/v3/klines
-  key: api key
-  secret: secret key
-

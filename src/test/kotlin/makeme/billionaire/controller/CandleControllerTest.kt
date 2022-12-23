@@ -15,7 +15,7 @@ import java.util.*
 
 class CandleControllerTest : DescribeSpec({
 
-    describe("cadleService ready") {
+    describe("candleService ready") {
         val binanceClient = mockk<BinanceClient>()
         val candleService = CandleServiceImpl(binanceClient)
         val candleController = CandleController(candleService)
