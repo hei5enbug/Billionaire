@@ -24,6 +24,7 @@ dependencies {
     implementation("org.postgresql:postgresql:42.5.1")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign:4.0.0")
     implementation("io.awspring.cloud:spring-cloud-starter-aws-parameter-store-config:2.4.2")
+    implementation("org.ta4j:ta4j-core:0.15")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.kotest:kotest-runner-junit5:5.5.4")

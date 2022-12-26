@@ -54,7 +54,7 @@ internal class CandleServiceTest : DescribeSpec({
             }
         }
 
-        context("binane API /api/v3/exchangeInfo") {
+        context("binance API /api/v3/exchangeInfo") {
             every {
                 binanceClient.getSymbolList()
             } returns SymbolsResponse(listOf(SymbolResponse("BTCUSDT"), SymbolResponse("ETHUSDT")))

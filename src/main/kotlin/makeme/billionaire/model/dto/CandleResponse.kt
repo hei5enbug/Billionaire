@@ -1,5 +1,9 @@
 package makeme.billionaire.model.dto
 
+import org.ta4j.core.BaseBar
+import org.ta4j.core.num.DecimalNum
+import java.time.*
+
 data class CandleResponse(
     val openTime: Long,
     val openPrice: Double,
@@ -18,4 +22,21 @@ data class CandleResponse(
         response[5].toDouble(),
         response[6].toLong(),
     )
+
+    fun toBaseBar(): BaseBar {
+        return BaseBar.builder(DecimalNum::valueOf, Number::class.java)
+            .timePeriod(
+                Duration.between(
+                    LocalDateTime.ofInstant(Instant.ofEpochMilli(openTime), ZoneId.systemDefault()),
+                    LocalDateTime.ofInstant(Instant.ofEpochMilli(closeTime), ZoneId.systemDefault()),
+                ),
+            )
+            .endTime(ZonedDateTime.ofInstant(Instant.ofEpochMilli(closeTime), ZoneId.systemDefault()))
+            .openPrice(openPrice)
+            .highPrice(highPrice)
+            .lowPrice(lowPrice)
+            .closePrice(closePrice)
+            .volume(volume)
+            .build()
+    }
 }
