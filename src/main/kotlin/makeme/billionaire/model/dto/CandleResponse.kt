@@ -24,14 +24,14 @@ data class CandleResponse(
     )
 
     fun toBaseBar(): BaseBar {
+        val duration = Duration.between(
+            LocalDateTime.ofInstant(Instant.ofEpochMilli(openTime), ZoneId.systemDefault()),
+            LocalDateTime.ofInstant(Instant.ofEpochMilli(closeTime), ZoneId.systemDefault())
+        ).withNanos(0)
+
         return BaseBar.builder(DecimalNum::valueOf, Number::class.java)
-            .timePeriod(
-                Duration.between(
-                    LocalDateTime.ofInstant(Instant.ofEpochMilli(openTime), ZoneId.systemDefault()),
-                    LocalDateTime.ofInstant(Instant.ofEpochMilli(closeTime), ZoneId.systemDefault()),
-                ),
-            )
-            .endTime(ZonedDateTime.ofInstant(Instant.ofEpochMilli(closeTime), ZoneId.systemDefault()))
+            .timePeriod(duration)
+            .endTime(ZonedDateTime.ofInstant(Instant.ofEpochMilli(closeTime), ZoneId.systemDefault()).withNano(0))
             .openPrice(openPrice)
             .highPrice(highPrice)
             .lowPrice(lowPrice)

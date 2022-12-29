@@ -20,25 +20,25 @@ class StrategyServiceImpl(
     val candleService: CandleService,
 ) : StrategyService {
 
-    override fun getBarSeries(days: Long): BaseBarSeries {
-        val series = BaseBarSeriesBuilder().withName("BTCUSDT-5m-1month").build()
+    override fun getBarSeries(days: Long, interval: TimeInterval): BaseBarSeries {
         val symbol = "BTCUSDT"
-        val interval = TimeInterval.Minutes5
-        val endPeriod = LocalDateTime.now()
-        val startPeriod = endPeriod.minusDays(days) // 한달 조회
-        var startTime = startPeriod.toSliceMillis(interval.millis)
-        var endTime = startTime + interval.millis * 1000
+        val series = BaseBarSeriesBuilder().withName("$symbol-$interval-${days}days").build()
+        val lastDateTime = LocalDateTime.now().withNano(0)
+        val firstDateTime = lastDateTime.minusDays(days)
+        var startTime = firstDateTime.toSliceMillis(interval.millis)
+        var endTime = startTime
+        val lastTime = lastDateTime.toSliceMillis(interval.millis)
 
-        while (endTime < endPeriod.toSliceMillis(interval.millis)) {
+        while (endTime < lastTime) {
+            endTime += interval.millis * 1000
             val candles = candleService.getCandleInfo(
                 symbol = symbol,
                 interval = interval.parameter,
                 startTime = startTime,
-                endTime = if (endTime >= startTime) endPeriod.toSliceMillis(interval.millis) else endTime
+                endTime = endTime
             )
             candles.forEach { series.addBar(it.toBaseBar()) }
             startTime = endTime + 1
-            endTime += interval.millis * 1000
         }
 
         return series
@@ -47,10 +47,8 @@ class StrategyServiceImpl(
     override fun buildStrategy(series: BarSeries): BaseStrategy {
         val close = ClosePriceIndicator(series)
         val rsi = RSIIndicator(close, 14)
-
-        val entryRule = CrossedDownIndicatorRule(rsi, 25)
+        val entryRule = CrossedDownIndicatorRule(rsi, 30)
         val exitRule = CrossedUpIndicatorRule(rsi, 70)
-
         return BaseStrategy(entryRule, exitRule)
     }
 
