@@ -12,34 +12,30 @@ import org.springframework.web.server.ResponseStatusException
 @RestControllerAdvice
 class GlobalExceptionHandler {
 
-    companion object : Log {}
+    companion object : Log;
 
     @ExceptionHandler(value = [NoSuchElementException::class])
     fun handleNoSuchElementFoundException(e: NoSuchElementException): ResponseEntity<ErrorResponse> {
         logger().error("", e)
-        val errorResponse = ErrorResponse(HttpStatus.NOT_FOUND.value(), e.message)
-        return ResponseEntity(errorResponse, HttpStatus.BAD_REQUEST)
+        return ErrorResponse(HttpStatus.NOT_FOUND.value(), e.message).toResponseEntity()
     }
 
     @ExceptionHandler(value = [ResponseStatusException::class])
     fun handleResponseStatusException(e: ResponseStatusException): ResponseEntity<ErrorResponse> {
         logger().error("", e)
-        val errorResponse = ErrorResponse(e.status.value(), e.message)
-        return ResponseEntity(errorResponse, e.status)
+        return ErrorResponse(e.status.value(), e.message).toResponseEntity()
     }
 
     @ExceptionHandler(value = [BinanceResponseException::class])
     fun handleBinanceResponseException(e: BinanceResponseException): ResponseEntity<ErrorResponse> {
         logger().error("", e)
-        val errorResponse = ErrorResponse(e.status, e.message)
-        return ResponseEntity(errorResponse, HttpStatus.valueOf(e.status))
+        return ErrorResponse(e.status, e.message).toResponseEntity()
     }
 
     @ExceptionHandler(value = [Exception::class])
     fun handleException(e: Exception): ResponseEntity<ErrorResponse> {
         logger().error("", e)
-        val errorResponse = ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.message)
-        return ResponseEntity(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR)
+        return ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.message).toResponseEntity()
     }
 
 }
