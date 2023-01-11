@@ -11,7 +11,6 @@ import makeme.billionaire.model.dto.AccountResponse
 import makeme.billionaire.model.dto.LeverageResponse
 import makeme.billionaire.model.dto.MarketPriceResponse
 import makeme.billionaire.model.dto.OrderResponse
-import makeme.billionaire.service.impl.OrderServiceImpl
 import org.assertj.core.internal.bytebuddy.utility.RandomString
 
 
@@ -19,7 +18,7 @@ class OrderServiceTest : DescribeSpec({
 
     describe("binanceFuturesClient ready") {
         val binanceFuturesClient = mockk<BinanceFuturesClient>()
-        val orderService = OrderServiceImpl(binanceFuturesClient, binanceProperties)
+        val orderService = OrderService(binanceFuturesClient, binanceProperties)
 
         context("binance futures API /fapi/v2/account") {
             every {

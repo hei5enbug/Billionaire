@@ -7,7 +7,7 @@ import io.mockk.mockk
 import makeme.billionaire.client.BinanceClient
 import makeme.billionaire.model.dto.CandleResponse
 import makeme.billionaire.model.dto.SymbolsResponse
-import makeme.billionaire.service.impl.CandleServiceImpl
+import makeme.billionaire.service.CandleService
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
@@ -17,7 +17,7 @@ class CandleControllerTest : DescribeSpec({
 
     describe("candleService ready") {
         val binanceClient = mockk<BinanceClient>()
-        val candleService = CandleServiceImpl(binanceClient)
+        val candleService = CandleService(binanceClient)
         val candleController = CandleController(candleService)
 
         context("binance API /api/v3/klines") {

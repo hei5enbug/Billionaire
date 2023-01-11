@@ -8,7 +8,6 @@ import makeme.billionaire.client.BinanceClient
 import makeme.billionaire.model.dto.CandleResponse
 import makeme.billionaire.model.dto.SymbolsResponse
 import makeme.billionaire.model.dto.SymbolsResponse.SymbolResponse
-import makeme.billionaire.service.impl.CandleServiceImpl
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
@@ -19,7 +18,7 @@ internal class CandleServiceTest : DescribeSpec({
 
     describe("binanceClient ready") {
         val binanceClient = mockk<BinanceClient>()
-        val candleService = CandleServiceImpl(binanceClient)
+        val candleService = CandleService(binanceClient)
 
         context("binance API /api/v3/klines") {
             val symbol = "ETHUSDT"
