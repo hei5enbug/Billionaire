@@ -1,4 +1,4 @@
-# Billionaire ![Build Status develop](https://github.com/ta4j/ta4j/workflows/Test/badge.svg?branch=develop) ![Build Status master](https://github.com/ta4j/ta4j/workflows/Test/badge.svg?branch=master) ![Generic badge](https://img.shields.io/badge/version-0.3.1-blue.svg)
+# Billionaire       ![Build Status master](https://github.com/ta4j/ta4j/workflows/Test/badge.svg?branch=master) ![Generic badge](https://img.shields.io/badge/version-0.3.1-blue.svg)
 
 ***Crypto Trading System***
 
@@ -6,7 +6,7 @@ Billionaire is trading system for cryptocurrency. It provides the Binance market
 
 ---
 
-baseUrl = http://43.200.138.197:8080
+baseUrl = https://api.billionaire.codes/
 
 `[GET] /symbol` - List of crpyto currencies traded in Binance market.
 
