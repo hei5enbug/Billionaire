@@ -2,6 +2,8 @@
 
 ***Crypto Trading System***
 
+<img src="https://user-images.githubusercontent.com/48705652/214756617-2a598189-37cc-43f7-a6c7-70a805b89df6.png" width="600" height="250">
+
 Billionaire is trading system for cryptocurrency. It provides the Binance market's crypto list, candlestick JSON data API and algorithmic trading by several indicators and strategy.
 
 ---
