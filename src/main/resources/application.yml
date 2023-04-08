@@ -10,13 +10,7 @@ spring:
   jpa:
     show_sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     properties:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
       hibernate.format_sql: true
-
-feign:
-  client:
-    config:
-      default:
-        loggerLevel: FULL

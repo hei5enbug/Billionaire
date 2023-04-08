@@ -5,13 +5,13 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import makeme.billionaire.client.BinanceFuturesClient
-import makeme.billionaire.model.OrderPosition
 import makeme.billionaire.model.BinanceProperties
+import makeme.billionaire.model.OrderPosition
 import makeme.billionaire.model.dto.AccountResponse
 import makeme.billionaire.model.dto.LeverageResponse
 import makeme.billionaire.model.dto.MarketPriceResponse
 import makeme.billionaire.model.dto.OrderResponse
-import org.assertj.core.internal.bytebuddy.utility.RandomString
+import net.bytebuddy.utility.RandomString
 
 
 class OrderServiceTest : DescribeSpec({

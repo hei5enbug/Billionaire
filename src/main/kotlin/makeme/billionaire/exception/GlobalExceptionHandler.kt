@@ -23,7 +23,7 @@ class GlobalExceptionHandler {
     @ExceptionHandler(value = [ResponseStatusException::class])
     fun handleResponseStatusException(e: ResponseStatusException): ResponseEntity<ErrorResponse> {
         logger().error("", e)
-        return ErrorResponse(e.status.value(), e.message).toResponseEntity()
+        return ErrorResponse(e.statusCode.value(), e.message).toResponseEntity()
     }
 
     @ExceptionHandler(value = [BinanceResponseException::class])

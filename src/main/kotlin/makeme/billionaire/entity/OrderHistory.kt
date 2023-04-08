@@ -1,8 +1,8 @@
 package makeme.billionaire.entity
 
+import jakarta.persistence.*
 import makeme.billionaire.model.OrderPosition
 import java.time.LocalDateTime
-import javax.persistence.*
 
 @Entity
 class OrderHistory(

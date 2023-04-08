@@ -14,7 +14,7 @@ import java.time.ZonedDateTime
 import java.util.*
 
 
-internal class CandleServiceTest : DescribeSpec({
+class CandleServiceTest : DescribeSpec({
 
     describe("binanceClient ready") {
         val binanceClient = mockk<BinanceClient>()
